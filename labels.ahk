@@ -31,7 +31,7 @@ OpenFolder:
   Return
 
 OpenRepo:
-  Run, "https://github.com/Frosthaven/autohotkey-tray-app/tree/main"
+  Run, "https://github.com/Frosthaven/autohotkey-tray-app/tree/my-spectre-x360"
   Return
 
 EditWithCode:
