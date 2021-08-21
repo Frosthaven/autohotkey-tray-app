@@ -38,8 +38,8 @@ try Menu, Tray, Icon, Dismiss This Menu, C:\Windows\System32\SHELL32.DLL, 248
 
 ; app label at bottom of tray menu to prevent overlap issues
 Menu, Tray, Add
-Menu, Tray, Add, [Global Hotkeys], DoNothing
-try Menu, Tray, Icon, [Global Hotkeys], C:\Windows\System32\SHELL32.DLL, 163
-Menu, Tray, Tip, Global Hotkeys
+Menu, Tray, Add, autohotkey-tray-app, OpenRepo
+try Menu, Tray, Icon, autohotkey-tray-app, %A_ScriptDir%\app\github.ico, 0
+Menu, Tray, Tip,autohotkey-tray-app
 
 Return

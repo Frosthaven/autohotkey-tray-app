@@ -30,6 +30,10 @@ OpenFolder:
   Run %A_ScriptDir%
   Return
 
+OpenRepo:
+  Run, "https://github.com/Frosthaven/autohotkey-tray-app/tree/main"
+  Return
+
 EditWithCode:
   Run, %comspec% /c "code %A_ScriptDir%",,Hide
   WinWait, ahk_class ConsoleWindowClass
