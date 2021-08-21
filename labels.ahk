@@ -42,7 +42,7 @@ EditWithCode:
   Return
 
 EditHotkeys:
-  Run, edit "%A_ScriptFullPath%"
+  Run, edit "%A_ScriptDir%/hotkeys.ahk"
   Return
 
 RemoveTooltip:
