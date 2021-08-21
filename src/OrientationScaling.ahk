@@ -22,7 +22,7 @@ SetScaleBasedOnOrientation() {
         SetDpi(1,displayID)
     } else {
         ; upside down
-        SetDpi(2,displayID)
+        SetDpi(1,displayID)
     }
     Return
 }
