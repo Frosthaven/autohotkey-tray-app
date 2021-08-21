@@ -25,10 +25,10 @@ try Menu, Tray, Icon, Restart Explorer, C:\Windows\EXPLORER.EXE, 0
 Menu, Tray, Add
 Menu, Tray, Add, Open Folder, OpenFolder
 try Menu, Tray, Icon, Open Folder, C:\Windows\System32\SHELL32.DLL, 206
-Menu, Tray, Add, Edit With Code, OpenFolderWithCode
-try Menu, Tray, Icon, Edit With Code, C:\Windows\System32\SHELL32.DLL, 134
-; Menu, Tray, Add, Edit, EditThisScript
-; try Menu, Tray, Icon, Edit, C:\Windows\System32\SHELL32.DLL, 134
+Menu, Tray, Add, Edit With Code, EditWithCode
+try Menu, Tray, Icon, Edit With Code, %A_ScriptDir%\app\code.ico, 0
+Menu, Tray, Add, Edit Hotkeys, EditHotkeys
+try Menu, Tray, Icon, Edit Hotkeys, C:\Windows\System32\SHELL32.DLL, 134
 Menu, Tray, Add, Reload, Reload
 try Menu, Tray, Icon, Reload, C:\Windows\System32\SHELL32.DLL, 239
 Menu, Tray, Add, Exit, Exit

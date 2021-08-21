@@ -30,16 +30,16 @@ OpenFolder:
   Run %A_ScriptDir%
   Return
 
-OpenFolderWithCode:
+EditWithCode:
   Run, %comspec% /c "code %A_ScriptDir%",,Hide
   WinWait, ahk_class ConsoleWindowClass
   Process, Close, cmd.exe
   DetectHiddenWindows, On
   Return
 
-; EditThisScript:
-;   Run, edit "%A_ScriptFullPath%"
-;   Return
+EditHotkeys:
+  Run, edit "%A_ScriptFullPath%"
+  Return
 
 RemoveTooltip:
   ToolTip
