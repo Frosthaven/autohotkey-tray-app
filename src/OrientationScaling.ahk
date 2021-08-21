@@ -1,8 +1,9 @@
+global displayID := "BOE08950_15_07E3_F8^BEE0D4CC2B180DF99D536244DC14B5E0"
+
 OnMessage(0x007E, "WM_DISPLAYCHANGE")
 
-GetDisplayOrientation()
-{
-    DEVMODE_Size := 226
+SetScaleBasedOnOrientation() {
+	DEVMODE_Size := 226
     VarSetCapacity(DEVMODE, DEVMODE_Size, 0)
     NumPut(DEVMODE_Size, DEVMODE, 68, "UShort")
     NumPut(64, DEVMODE, 70, "UShort")
@@ -13,30 +14,34 @@ GetDisplayOrientation()
     If (ret && NumGet(DEVMODE, 72, "UInt") & 0x00000080)
             dmDisplayOrientation := NumGet(DEVMODE, 84, "UInt")
     VarSetCapacity(DEVMODE, 0)
-    DllCall("ChangeDisplaySettingsA", UInt,&DEVMODE, UInt,0)
-    Return dmDisplayOrientation
+    if (dmDisplayOrientation == 0) {
+        ; normal
+        SetDpi(-2,displayID)
+    } else if (dmDisplayOrientation == 1 || dmDisplayOrientation == 3) {
+        ; tablet
+        SetDpi(1,displayID)
+    } else {
+        ; upside down
+        SetDpi(2,displayID)
+    }
+    Return
 }
 
 SetDpi(dpi,displayID) {
+    VarSetCapacity(DM,156,0)
+    NumPut(156,DM,36)
+
     RegWrite, REG_DWORD, HKEY_CURRENT_USER\Control Panel\Desktop\PerMonitorSettings\%displayID%, DpiValue, % dpi
     RegWrite, REG_DWORD, HKEY_LOCAL_MACHINE\System\ControlSet001\Control\GraphicsDrivers\ScaleFactors\%displayID%, DpiValue, % dpi
+
+    DllCall("ChangeDisplaySettingsA", UInt,&DM, UInt,0)
 }
 
 WM_DISPLAYCHANGE(wParam, lParam, msg, hwnd) {
     If (hwn == GuiHwnd) {
-        DisplayOrientation := GetDisplayOrientation()
-        ; 0 = normal
-        ; 1 = right
-        ; 2 = upside down
-        ; 3 = left
-        DisplayID := ACI27C3E3LMRS016508_0A_07DE_7A^E593B1DA60F70CF5B145A6CAC82E8568
-        if (DisplayOrientation == 0) {
-            ; normal orientation
-            SetDpi(200,DisplayID)
-        } else {
-            ; altered orientation
-            SetDpi(300,DisplayID)
-        }
+        SetScaleBasedOnOrientation()
     }
     Return
 }
+
+SetScaleBasedOnOrientation()
