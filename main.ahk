@@ -26,6 +26,7 @@ SetBatchLines -1
 ; PROJECT FILES ****************************************************************
 ;*******************************************************************************
 
+#Include %A_ScriptDir%\src\OrientationScaling.ahk
 #Include %A_ScriptDir%\src\RenderNotificationTrayMeny.ahk
 #Include %A_ScriptDir%\src\PolledEvents.ahk
 #Include %A_ScriptDir%\src\Restarts.ahk
