@@ -23,7 +23,21 @@ SetBatchLines -1
 #Include %A_ScriptDir%\lib\WindowManagement.ahk
 #Include %A_ScriptDir%\lib\ProcessManagement.ahk
 
-; PROJECT FILES ****************************************************************
+; INIT HEADER CODE *************************************************************
+;*******************************************************************************
+
+; Priority Codes
+; ----------------------
+; 256	Realtime
+; 128	High
+; 32768	Above normal
+; 32	Normal
+; 16384	Below normal
+; 64	Low
+
+SetProcessPriorityAndAffinity("audiodg",128,2)
+
+; INIT PROJECT FILES ***********************************************************
 ;*******************************************************************************
 
 #Include %A_ScriptDir%\src\RenderNotificationTrayMeny.ahk
@@ -32,3 +46,4 @@ SetBatchLines -1
 
 #Include %A_ScriptDir%\labels.ahk
 #Include %A_ScriptDir%\hotkeys.ahk
+

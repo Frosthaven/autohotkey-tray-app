@@ -30,3 +30,8 @@ startApp(pName, pLink) {
   }
   return
 }
+
+SetProcessPriorityAndAffinity(name, desiredPriority, desiredAffinity) {
+  Run, powershell -windowstyle hidden -Command "$Process = Get-Process %name%; $Process.ProcessorAffinity=%desiredAffinity%; Get-WmiObject Win32_process -filter 'name="""%name%.exe"""' | foreach-object { $_.SetPriority(%desiredPriority%)}"
+  return
+}
